@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { TravelRequestService } from "../services/TravelRequestService";
+import { id } from "zod/v4/locales";
 
 const travelRequestService = new TravelRequestService
 
@@ -7,25 +8,16 @@ export class TravelRequestController {
 
     async createRequest(req: Request, res: Response): Promise<Response> {
         try {
-            const {
-                userId,
-                destination,
-                departureDate,
-                returnDate,
-                overTimeStart,
-                overTimeEnd
-            } = req.body
+            
+            const request = await travelRequestService.createRequest(req.body)
 
-            const request = await travelRequestService.createRequest({
-                userId,
-                destination,
-                departureDate,
-                returnDate,
-                overTimeStart,
-                overTimeEnd
-            })
-
-            return res.status(201).json({message: "Sua solicitacao foi enviada", request})
+            return res.status(201).json({message: "Request created", request: {
+                id: request.id,
+                destination: request.destination,
+                departureDate: request.departureDate,
+                returnDate: request.returnDate,
+                status: request.status
+            }})
             
         } catch (error) {
             return res.status(500).json({
