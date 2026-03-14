@@ -13,9 +13,6 @@ export class User {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
-  matricula!: string
-
   @Column({ length: 100 })
   name!: string;
 

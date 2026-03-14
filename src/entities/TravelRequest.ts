@@ -35,9 +35,16 @@ export class TravelRequest {
   @Column({type: "date"})
   returnDate!: Date;
 
+  @Column({type: "date"})
+  overTimeStart!: Date
+
+  @Column({type: "date"})
+  overTimeEnd!: Date
+
   @Column({
     type: "enum",
     enum: Status,
+    default: Status.PENDING
   })
   status!: Status;
 
