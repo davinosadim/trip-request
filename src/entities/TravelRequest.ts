@@ -35,11 +35,11 @@ export class TravelRequest {
   @Column({type: "date"})
   returnDate!: Date;
 
-  @Column({type: "date"})
-  overTimeStart!: Date
+  @Column({type: "timestamp", nullable: true})
+  overTimeStart?: Date
 
-  @Column({type: "date"})
-  overTimeEnd!: Date
+  @Column({type: "timestamp", nullable: true})
+  overTimeEnd?: Date
 
   @Column({
     type: "enum",
