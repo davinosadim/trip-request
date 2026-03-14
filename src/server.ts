@@ -4,7 +4,8 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import { AppDataSource } from "./database/data-source";
 import helmet from "helmet";
-import router from "./routes/userRoutes";
+import userRoutes from "./routes/userRoutes";
+import travelRequestRoutes from "./routes/travelRequestRoutes";
 
 dotenv.config();
 
@@ -14,7 +15,8 @@ const PORT = process.env.PORT || 6060;
 app.set("trust proxy", 1);
 
 app.use(express.json());
-app.use("/api", router);
+app.use("/api", userRoutes);
+app.use("/api", travelRequestRoutes);
 
 app.use(helmet());
 app.use(cors());
